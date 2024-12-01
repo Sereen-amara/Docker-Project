@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+  php:
+    build:
+      context: .  
+    container_name: php-app
+    ports:
+      - "8080:80"
+    volumes:
+      - ./html:/var/www/html  
+    depends_on:
+      - db
+    networks:
+      - app_network
+
+  db:
+    image: mysql:5.7
+    container_name: php-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mydatabase
+    networks:
+      - app_network
+
+  dashboard:
+    image: nginx:latest
+    container_name: vuln-dashboard
+    ports:
+      - "8081:80"
+    volumes:
+      - ./vuln-dashboard:/usr/share/nginx/html:ro             
+      - ./trivy-results:/etc/nginx/trivy-results:ro           
+      - ./vuln-dashboard/nginx.conf:/etc/nginx/conf.d/default.conf:ro  
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge

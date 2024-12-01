@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vulnerability Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .summary {
+            margin: 20px 0;
+        }
+        .summary span {
+            font-size: 1.2em;
+            margin-right: 20px;
+        }
+        .badge {
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 0.9em;
+        }
+        .badge.critical {
+            background-color: #ff4d4d;
+        }
+        .badge.high {
+            background-color: #ff9900;
+        }
+        .badge.medium {
+            background-color: #ffcc00;
+        }
+        .badge.low {
+            background-color: #66cc66;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .charts {
+            margin-top: 40px;
+        }
+        .chart-container {
+            max-width: 450px; /* Match the canvas size */
+            max-height: 450px;
+            margin: 0 auto; /* Center the chart */
+        }
+    </style>
+</head>
+<body>
+    <h1>Vulnerability Dashboard</h1>
+
+    <div class="summary">
+        <span>Critical: <span id="critical-count" class="badge critical">0</span></span>
+        <span>High: <span id="high-count" class="badge high">0</span></span>
+        <span>Medium: <span id="medium-count" class="badge medium">0</span></span>
+        <span>Low: <span id="low-count" class="badge low">0</span></span>
+    </div>
+
+    <div class="charts">
+        <div class="chart-container">
+            <h2>Severity Breakdown</h2>
+            <canvas id="severityChart" width="350" height="350"></canvas>
+        </div>
+    </div>
+
+    <h2>Critical Vulnerabilities</h2>
+    <table id="critical-vulnerabilities">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Package</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="3">Loading critical vulnerabilities...</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        // Fetch vulnerabilities data
+        fetch('/trivy-results/php-vuln.json')
+            .then(response => response.json())
+            .then(data => {
+                const vulnerabilities = data.Results[0]?.Vulnerabilities || [];
+                const criticalTableBody = document.querySelector("#critical-vulnerabilities tbody");
+                const severityCounts = { critical: 0, high: 0, medium: 0, low: 0 };
+
+                // Clear initial rows
+                criticalTableBody.innerHTML = "";
+
+                vulnerabilities.forEach(vuln => {
+                    // Count severities
+                    const severity = vuln.Severity.toLowerCase();
+                    if (severityCounts[severity] !== undefined) {
+                        severityCounts[severity]++;
+                    }
+
+                    // Only add critical vulnerabilities to the table
+                    if (severity === "critical") {
+                        const row = document.createElement("tr");
+                        row.innerHTML = `
+                            <td>${vuln.VulnerabilityID}</td>
+                            <td>${vuln.PkgName}</td>
+                            <td>${vuln.Description || "N/A"}</td>
+                        `;
+                        criticalTableBody.appendChild(row);
+                    }
+                });
+
+                // Update severity counts in the summary
+                document.getElementById("critical-count").textContent = severityCounts.critical;
+                document.getElementById("high-count").textContent = severityCounts.high;
+                document.getElementById("medium-count").textContent = severityCounts.medium;
+                document.getElementById("low-count").textContent = severityCounts.low;
+
+                // Handle case where there are no critical vulnerabilities
+                if (severityCounts.critical === 0) {
+                    criticalTableBody.innerHTML = `
+                        <tr>
+                            <td colspan="3">No critical vulnerabilities found.</td>
+                        </tr>
+                    `;
+                }
+
+                // Render severity breakdown chart
+                renderSeverityChart(severityCounts);
+            })
+            .catch(err => {
+                console.error(err);
+                const criticalTableBody = document.querySelector("#critical-vulnerabilities tbody");
+                criticalTableBody.innerHTML = `
+                    <tr>
+                        <td colspan="3">Error loading vulnerabilities.</td>
+                    </tr>
+                `;
+            });
+
+        // Render Severity Breakdown Chart
+        function renderSeverityChart(severityCounts) {
+            const ctx = document.getElementById("severityChart").getContext("2d");
+            new Chart(ctx, {
+                type: "doughnut",
+                data: {
+                    labels: ["Critical", "High", "Medium", "Low"],
+                    datasets: [
+                        {
+                            label: "Severity Breakdown",
+                            data: [
+                                severityCounts.critical,
+                                severityCounts.high,
+                                severityCounts.medium,
+                                severityCounts.low,
+                            ],
+                            backgroundColor: ["#ff4d4d", "#ff9900", "#ffcc00", "#66cc66"],
+                        },
+                    ],
+                },
+                options: {
+                    responsive: false,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            position: "bottom",
+                        },
+                    },
+                },
+            });
+        }
+    </script>
+</body>
+</html>
