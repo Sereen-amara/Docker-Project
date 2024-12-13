@@ -1,0 +1,1 @@
+Á 2xmlX	hrxApplication/vendor/composer/a663acd5/symfony-symfony-0ab3693/src/Symfony/Component/Routing/Tests/Fixtures/missing_id.xml

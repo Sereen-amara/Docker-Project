@@ -1,0 +1,8 @@
+sonar.projectKey=php-app
+sonar.projectName=PHP Application
+sonar.host.url=http://localhost:9000
+sonar.token=sqp_1d009be3cb4621f38950d856687e66ed90a281bd
+sonar.sources=.
+sonar.sourceEncoding=UTF-8
+sonar.exclusions=vendor/**
+sonar.log.level=DEBUG

@@ -1,0 +1,1 @@
+ X	hr$Application/sonar-project.properties
