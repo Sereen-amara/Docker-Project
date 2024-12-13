@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 # Docker-Project
 
+=======
+>>>>>>> master
 ## Disclaimer
 This repository contains a vulnerable PHP file for testing purposes only. Use it responsibly in a controlled environment. 
 DO NOT deploy this code to production systems.
@@ -56,4 +59,8 @@ Medium
 Low
 
 See the the charts between SAST (SonarQube) and DAST (Trivy).
+<<<<<<< HEAD
 Use the Prometheus metrics to monitor system health.
+=======
+Use the Prometheus metrics to monitor system health.
+>>>>>>> master

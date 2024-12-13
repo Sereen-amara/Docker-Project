@@ -1,0 +1,663 @@
+{
+  "SchemaVersion": 2,
+  "CreatedAt": "2024-12-12T10:25:54.699813462Z",
+  "ArtifactName": "/project/html",
+  "ArtifactType": "filesystem",
+  "Metadata": {
+    "ImageConfig": {
+      "architecture": "",
+      "created": "0001-01-01T00:00:00Z",
+      "os": "",
+      "rootfs": {
+        "type": "",
+        "diff_ids": null
+      },
+      "config": {}
+    }
+  },
+  "Results": [
+    {
+      "Target": "composer.lock",
+      "Class": "lang-pkgs",
+      "Type": "composer",
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2016-5385",
+          "PkgID": "guzzlehttp/guzzle@6.0.0",
+          "PkgName": "guzzlehttp/guzzle",
+          "PkgIdentifier": {
+            "PURL": "pkg:composer/guzzlehttp/guzzle@6.0.0",
+            "UID": "fe711a6e3d9f8a99"
+          },
+          "InstalledVersion": "6.0.0",
+          "FixedVersion": "4.2.4, 5.3.1, 6.2.1",
+          "Status": "fixed",
+          "Layer": {},
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2016-5385",
+          "DataSource": {
+            "ID": "php-security-advisories",
+            "Name": "PHP Security Advisories Database",
+            "URL": "https://github.com/FriendsOfPHP/security-advisories"
+          },
+          "Title": "PHP: sets environmental variable based on user supplied Proxy request header",
+          "Description": "PHP through 7.0.8 does not attempt to address RFC 3875 section 4.1.18 namespace conflicts and therefore does not protect applications from the presence of untrusted client data in the HTTP_PROXY environment variable, which might allow remote attackers to redirect an application's outbound HTTP traffic to an arbitrary proxy server via a crafted Proxy header in an HTTP request, as demonstrated by (1) an application that makes a getenv('HTTP_PROXY') call or (2) a CGI configuration of PHP, aka an \"httpoxy\" issue.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-601"
+          ],
+          "VendorSeverity": {
+            "amazon": 2,
+            "nvd": 3,
+            "oracle-oval": 2,
+            "redhat": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:N/AC:H/Au:N/C:P/I:P/A:P",
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V2Score": 5.1,
+              "V3Score": 8.1
+            },
+            "redhat": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:N/I:P/A:N",
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:C/C:N/I:L/A:N",
+              "V2Score": 5,
+              "V3Score": 5
+            }
+          },
+          "References": [
+            "http://lists.opensuse.org/opensuse-updates/2016-08/msg00003.html",
+            "http://php.net/ChangeLog-7.php#7.0.9",
+            "http://rhn.redhat.com/errata/RHSA-2016-1609.html",
+            "http://rhn.redhat.com/errata/RHSA-2016-1610.html",
+            "http://rhn.redhat.com/errata/RHSA-2016-1611.html",
+            "http://rhn.redhat.com/errata/RHSA-2016-1612.html",
+            "http://rhn.redhat.com/errata/RHSA-2016-1613.html",
+            "http://www.debian.org/security/2016/dsa-3631",
+            "http://www.kb.cert.org/vuls/id/797896",
+            "http://www.oracle.com/technetwork/security-advisory/cpujan2018-3236628.html",
+            "http://www.oracle.com/technetwork/security-advisory/cpujul2017-3236622.html",
+            "http://www.oracle.com/technetwork/topics/security/linuxbulletinjul2016-3090544.html",
+            "http://www.securityfocus.com/bid/91821",
+            "http://www.securitytracker.com/id/1036335",
+            "https://access.redhat.com/security/cve/CVE-2016-5385",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=1353794",
+            "https://github.com/guzzle/guzzle/releases/tag/6.2.1",
+            "https://h20566.www2.hpe.com/hpsc/doc/public/display?docLocale=en_US\u0026docId=emr_na-hpesbhf03770en_us",
+            "https://h20566.www2.hpe.com/portal/site/hpsc/public/kb/docDisplay?docId=emr_na-c05320149",
+            "https://h20566.www2.hpe.com/portal/site/hpsc/public/kb/docDisplay?docId=emr_na-c05333297",
+            "https://h20566.www2.hpe.com/portal/site/hpsc/public/kb/docDisplay?docId=emr_na-c05390722",
+            "https://httpoxy.org/",
+            "https://linux.oracle.com/cve/CVE-2016-5385.html",
+            "https://linux.oracle.com/errata/ELSA-2016-1613.html",
+            "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/7RMYXAVNYL2MOBJTFATE73TOVOEZYC5R/",
+            "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/GXFEIMZPSVGZQQAYIQ7U7DFVX3IBSDLF/",
+            "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/KZOIUYZDBWNDDHC6XTOLZYRMRXZWTJCP/",
+            "https://nvd.nist.gov/vuln/detail/CVE-2016-5385",
+            "https://security.gentoo.org/glsa/201611-22",
+            "https://typo3.org/security/advisory/typo3-core-sa-2016-019",
+            "https://ubuntu.com/security/notices/USN-3045-1",
+            "https://www.cve.org/CVERecord?id=CVE-2016-5385",
+            "https://www.drupal.org/SA-CORE-2016-003"
+          ],
+          "PublishedDate": "2016-07-19T02:00:17.773Z",
+          "LastModifiedDate": "2023-02-12T23:23:28.023Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2022-29248",
+          "PkgID": "guzzlehttp/guzzle@6.0.0",
+          "PkgName": "guzzlehttp/guzzle",
+          "PkgIdentifier": {
+            "PURL": "pkg:composer/guzzlehttp/guzzle@6.0.0",
+            "UID": "fe711a6e3d9f8a99"
+          },
+          "InstalledVersion": "6.0.0",
+          "FixedVersion": "7.4.3, 6.5.6",
+          "Status": "fixed",
+          "Layer": {},
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-29248",
+          "DataSource": {
+            "ID": "php-security-advisories",
+            "Name": "PHP Security Advisories Database",
+            "URL": "https://github.com/FriendsOfPHP/security-advisories"
+          },
+          "Title": "Guzzle is a PHP HTTP client. Guzzle prior to versions 6.5.6 and 7.4.3  ...",
+          "Description": "Guzzle is a PHP HTTP client. Guzzle prior to versions 6.5.6 and 7.4.3 contains a vulnerability with the cookie middleware. The vulnerability is that it is not checked if the cookie domain equals the domain of the server which sets the cookie via the Set-Cookie header, allowing a malicious server to set cookies for unrelated domains. The cookie middleware is disabled by default, so most library consumers will not be affected by this issue. Only those who manually add the cookie middleware to the handler stack or construct the client with ['cookies' =\u003e true] are affected. Moreover, those who do not use the same Guzzle client to call multiple domains and have disabled redirect forwarding are not affected by this vulnerability. Guzzle versions 6.5.6 and 7.4.3 contain a patch for this issue. As a workaround, turn off the cookie middleware.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-565",
+            "CWE-200"
+          ],
+          "VendorSeverity": {
+            "bitnami": 3,
+            "ghsa": 3,
+            "nvd": 3
+          },
+          "CVSS": {
+            "bitnami": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:H/I:H/A:N",
+              "V3Score": 8
+            },
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:H/I:H/A:N",
+              "V3Score": 8
+            },
+            "nvd": {
+              "V2Vector": "AV:N/AC:M/Au:N/C:P/I:P/A:N",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N",
+              "V2Score": 5.8,
+              "V3Score": 8.1
+            }
+          },
+          "References": [
+            "https://github.com/FriendsOfPHP/security-advisories/blob/master/guzzlehttp/guzzle/CVE-2022-29248.yaml",
+            "https://github.com/guzzle/guzzle",
+            "https://github.com/guzzle/guzzle/commit/74a8602c6faec9ef74b7a9391ac82c5e65b1cdab",
+            "https://github.com/guzzle/guzzle/pull/3018",
+            "https://github.com/guzzle/guzzle/security/advisories/GHSA-cwmx-hcrq-mhc3",
+            "https://nvd.nist.gov/vuln/detail/CVE-2022-29248",
+            "https://www.debian.org/security/2022/dsa-5246",
+            "https://www.drupal.org/sa-core-2022-010"
+          ],
+          "PublishedDate": "2022-05-25T18:15:08.503Z",
+          "LastModifiedDate": "2023-07-21T16:54:50.437Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2022-31042",
+          "PkgID": "guzzlehttp/guzzle@6.0.0",
+          "PkgName": "guzzlehttp/guzzle",
+          "PkgIdentifier": {
+            "PURL": "pkg:composer/guzzlehttp/guzzle@6.0.0",
+            "UID": "fe711a6e3d9f8a99"
+          },
+          "InstalledVersion": "6.0.0",
+          "FixedVersion": "7.4.4, 6.5.7",
+          "Status": "fixed",
+          "Layer": {},
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-31042",
+          "DataSource": {
+            "ID": "php-security-advisories",
+            "Name": "PHP Security Advisories Database",
+            "URL": "https://github.com/FriendsOfPHP/security-advisories"
+          },
+          "Title": "Guzzle is an open source PHP HTTP client. In affected versions the `Co ...",
+          "Description": "Guzzle is an open source PHP HTTP client. In affected versions the `Cookie` headers on requests are sensitive information. On making a request using the `https` scheme to a server which responds with a redirect to a URI with the `http` scheme, or on making a request to a server which responds with a redirect to a a URI to a different host, we should not forward the `Cookie` header on. Prior to this fix, only cookies that were managed by our cookie middleware would be safely removed, and any `Cookie` header manually added to the initial request would not be stripped. We now always strip it, and allow the cookie middleware to re-add any cookies that it deems should be there. Affected Guzzle 7 users should upgrade to Guzzle 7.4.4 as soon as possible. Affected users using any earlier series of Guzzle should upgrade to Guzzle 6.5.7 or 7.4.4. Users unable to upgrade may consider an alternative approach to use your own redirect middleware, rather than ours. If you do not require or expect redirects to be followed, one should simply disable redirects all together.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-212",
+            "CWE-200"
+          ],
+          "VendorSeverity": {
+            "bitnami": 3,
+            "ghsa": 3,
+            "nvd": 3
+          },
+          "CVSS": {
+            "bitnami": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 7.5
+            },
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 7.5
+            },
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:N/A:N",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V2Score": 5,
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://github.com/FriendsOfPHP/security-advisories/blob/master/guzzlehttp/guzzle/CVE-2022-31042.yaml",
+            "https://github.com/guzzle/guzzle",
+            "https://github.com/guzzle/guzzle/commit/e3ff079b22820c2029d4c2a87796b6a0b8716ad8",
+            "https://github.com/guzzle/guzzle/security/advisories/GHSA-f2wf-25xc-69c9",
+            "https://nvd.nist.gov/vuln/detail/CVE-2022-31042",
+            "https://www.debian.org/security/2022/dsa-5246",
+            "https://www.drupal.org/sa-core-2022-011",
+            "https://www.rfc-editor.org/rfc/rfc9110.html#name-redirection-3xx"
+          ],
+          "PublishedDate": "2022-06-10T00:15:07.69Z",
+          "LastModifiedDate": "2023-07-24T13:31:07.153Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2022-31043",
+          "PkgID": "guzzlehttp/guzzle@6.0.0",
+          "PkgName": "guzzlehttp/guzzle",
+          "PkgIdentifier": {
+            "PURL": "pkg:composer/guzzlehttp/guzzle@6.0.0",
+            "UID": "fe711a6e3d9f8a99"
+          },
+          "InstalledVersion": "6.0.0",
+          "FixedVersion": "7.4.4, 6.5.7",
+          "Status": "fixed",
+          "Layer": {},
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-31043",
+          "DataSource": {
+            "ID": "php-security-advisories",
+            "Name": "PHP Security Advisories Database",
+            "URL": "https://github.com/FriendsOfPHP/security-advisories"
+          },
+          "Title": "Guzzle is an open source PHP HTTP client. In affected versions `Author ...",
+          "Description": "Guzzle is an open source PHP HTTP client. In affected versions `Authorization` headers on requests are sensitive information. On making a request using the `https` scheme to a server which responds with a redirect to a URI with the `http` scheme, we should not forward the `Authorization` header on. This is much the same as to how we don't forward on the header if the host changes. Prior to this fix, `https` to `http` downgrades did not result in the `Authorization` header being removed, only changes to the host. Affected Guzzle 7 users should upgrade to Guzzle 7.4.4 as soon as possible. Affected users using any earlier series of Guzzle should upgrade to Guzzle 6.5.7 or 7.4.4. Users unable to upgrade may consider an alternative approach which would be to use their own redirect middleware. Alternately users may simply disable redirects all together if redirects are not expected or required.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-212",
+            "CWE-200"
+          ],
+          "VendorSeverity": {
+            "bitnami": 3,
+            "ghsa": 3,
+            "nvd": 3
+          },
+          "CVSS": {
+            "bitnami": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 7.5
+            },
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 7.5
+            },
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:P/I:N/A:N",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V2Score": 5,
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://github.com/FriendsOfPHP/security-advisories/blob/master/guzzlehttp/guzzle/CVE-2022-31043.yaml",
+            "https://github.com/guzzle/guzzle",
+            "https://github.com/guzzle/guzzle/commit/e3ff079b22820c2029d4c2a87796b6a0b8716ad8",
+            "https://github.com/guzzle/guzzle/security/advisories/GHSA-w248-ffj2-4v5q",
+            "https://nvd.nist.gov/vuln/detail/CVE-2022-31043",
+            "https://www.debian.org/security/2022/dsa-5246",
+            "https://www.drupal.org/sa-core-2022-011",
+            "https://www.rfc-editor.org/rfc/rfc9110.html#name-redirection-3xx"
+          ],
+          "PublishedDate": "2022-06-10T00:15:07.757Z",
+          "LastModifiedDate": "2023-07-24T13:31:03.867Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2022-31090",
+          "PkgID": "guzzlehttp/guzzle@6.0.0",
+          "PkgName": "guzzlehttp/guzzle",
+          "PkgIdentifier": {
+            "PURL": "pkg:composer/guzzlehttp/guzzle@6.0.0",
+            "UID": "fe711a6e3d9f8a99"
+          },
+          "InstalledVersion": "6.0.0",
+          "FixedVersion": "7.4.5, 6.5.8",
+          "Status": "fixed",
+          "Layer": {},
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-31090",
+          "DataSource": {
+            "ID": "php-security-advisories",
+            "Name": "PHP Security Advisories Database",
+            "URL": "https://github.com/FriendsOfPHP/security-advisories"
+          },
+          "Title": "Guzzle, an extensible PHP HTTP client. `Authorization` headers on requ ...",
+          "Description": "Guzzle, an extensible PHP HTTP client. `Authorization` headers on requests are sensitive information. In affected versions when using our Curl handler, it is possible to use the `CURLOPT_HTTPAUTH` option to specify an `Authorization` header. On making a request which responds with a redirect to a URI with a different origin (change in host, scheme or port), if we choose to follow it, we should remove the `CURLOPT_HTTPAUTH` option before continuing, stopping curl from appending the `Authorization` header to the new request. Affected Guzzle 7 users should upgrade to Guzzle 7.4.5 as soon as possible. Affected users using any earlier series of Guzzle should upgrade to Guzzle 6.5.8 or 7.4.5. Note that a partial fix was implemented in Guzzle 7.4.2, where a change in host would trigger removal of the curl-added Authorization header, however this earlier fix did not cover change in scheme or change in port. If you do not require or expect redirects to be followed, one should simply disable redirects all together. Alternatively, one can specify to use the Guzzle steam handler backend, rather than curl.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-212",
+            "CWE-200"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3,
+            "nvd": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:N/A:N",
+              "V3Score": 7.7
+            },
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:S/C:P/I:N/A:N",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:N/A:N",
+              "V2Score": 4,
+              "V3Score": 7.7
+            }
+          },
+          "References": [
+            "https://github.com/FriendsOfPHP/security-advisories/blob/master/guzzlehttp/guzzle/CVE-2022-31090.yaml",
+            "https://github.com/guzzle/guzzle",
+            "https://github.com/guzzle/guzzle/blob/6.5.8/CHANGELOG.md",
+            "https://github.com/guzzle/guzzle/blob/7.4.5/CHANGELOG.md",
+            "https://github.com/guzzle/guzzle/commit/1dd98b0564cb3f6bd16ce683cb755f94c10fbd82",
+            "https://github.com/guzzle/guzzle/security/advisories/GHSA-25mq-v84q-4j7r",
+            "https://nvd.nist.gov/vuln/detail/CVE-2022-31090",
+            "https://security.gentoo.org/glsa/202305-24",
+            "https://www.debian.org/security/2022/dsa-5246"
+          ],
+          "PublishedDate": "2022-06-27T22:15:08.873Z",
+          "LastModifiedDate": "2023-07-24T13:17:06.393Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2022-31091",
+          "PkgID": "guzzlehttp/guzzle@6.0.0",
+          "PkgName": "guzzlehttp/guzzle",
+          "PkgIdentifier": {
+            "PURL": "pkg:composer/guzzlehttp/guzzle@6.0.0",
+            "UID": "fe711a6e3d9f8a99"
+          },
+          "InstalledVersion": "6.0.0",
+          "FixedVersion": "7.4.5, 6.5.8",
+          "Status": "fixed",
+          "Layer": {},
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-31091",
+          "DataSource": {
+            "ID": "php-security-advisories",
+            "Name": "PHP Security Advisories Database",
+            "URL": "https://github.com/FriendsOfPHP/security-advisories"
+          },
+          "Title": "Guzzle, an extensible PHP HTTP client. `Authorization` and `Cookie` he ...",
+          "Description": "Guzzle, an extensible PHP HTTP client. `Authorization` and `Cookie` headers on requests are sensitive information. In affected versions on making a request which responds with a redirect to a URI with a different port, if we choose to follow it, we should remove the `Authorization` and `Cookie` headers from the request, before containing. Previously, we would only consider a change in host or scheme. Affected Guzzle 7 users should upgrade to Guzzle 7.4.5 as soon as possible. Affected users using any earlier series of Guzzle should upgrade to Guzzle 6.5.8 or 7.4.5. Note that a partial fix was implemented in Guzzle 7.4.2, where a change in host would trigger removal of the curl-added Authorization header, however this earlier fix did not cover change in scheme or change in port. An alternative approach would be to use your own redirect middleware, rather than ours, if you are unable to upgrade. If you do not require or expect redirects to be followed, one should simply disable redirects all together.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-200"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3,
+            "nvd": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:N/A:N",
+              "V3Score": 7.7
+            },
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:S/C:P/I:N/A:N",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:N/A:N",
+              "V2Score": 4,
+              "V3Score": 7.7
+            }
+          },
+          "References": [
+            "https://github.com/FriendsOfPHP/security-advisories/blob/master/guzzlehttp/guzzle/CVE-2022-31091.yaml",
+            "https://github.com/guzzle/guzzle",
+            "https://github.com/guzzle/guzzle/commit/1dd98b0564cb3f6bd16ce683cb755f94c10fbd82",
+            "https://github.com/guzzle/guzzle/security/advisories/GHSA-q559-8m2m-g699",
+            "https://nvd.nist.gov/vuln/detail/CVE-2022-31091",
+            "https://security.gentoo.org/glsa/202305-24",
+            "https://www.debian.org/security/2022/dsa-5246"
+          ],
+          "PublishedDate": "2022-06-27T22:15:08.933Z",
+          "LastModifiedDate": "2023-05-21T22:15:13.003Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2018-19296",
+          "PkgID": "phpmailer/phpmailer@v5.2.23",
+          "PkgName": "phpmailer/phpmailer",
+          "PkgIdentifier": {
+            "PURL": "pkg:composer/phpmailer/phpmailer@v5.2.23",
+            "UID": "356827fbb6d6509b"
+          },
+          "InstalledVersion": "v5.2.23",
+          "FixedVersion": "5.2.27, 6.0.6",
+          "Status": "fixed",
+          "Layer": {},
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2018-19296",
+          "DataSource": {
+            "ID": "php-security-advisories",
+            "Name": "PHP Security Advisories Database",
+            "URL": "https://github.com/FriendsOfPHP/security-advisories"
+          },
+          "Title": "PHPMailer before 5.2.27 and 6.x before 6.0.6 is vulnerable to an objec ...",
+          "Description": "PHPMailer before 5.2.27 and 6.x before 6.0.6 is vulnerable to an object injection attack.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-1321",
+            "CWE-502"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3,
+            "nvd": 3,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+              "V3Score": 8.8
+            },
+            "nvd": {
+              "V2Vector": "AV:N/AC:M/Au:N/C:P/I:P/A:P",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+              "V2Score": 6.8,
+              "V3Score": 8.8
+            }
+          },
+          "References": [
+            "https://github.com/FriendsOfPHP/security-advisories/blob/master/phpmailer/phpmailer/CVE-2018-19296.yaml",
+            "https://github.com/PHPMailer/PHPMailer/commit/f1231a9771505f4f34da060390d82eadb8448271",
+            "https://github.com/PHPMailer/PHPMailer/releases/tag/v5.2.27",
+            "https://github.com/PHPMailer/PHPMailer/releases/tag/v6.0.6",
+            "https://github.com/PHPMailer/PHPMailer/security/advisories/GHSA-7w4p-72j7-v7c2",
+            "https://lists.debian.org/debian-lts-announce/2018/12/msg00020.html",
+            "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/3B5WDPGUFNPG4NAZ6G4BZX43BKLAVA5B",
+            "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/3B5WDPGUFNPG4NAZ6G4BZX43BKLAVA5B/",
+            "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/KPU66INRFY5BQ3ESVPRUXJR4DXQAFJVT",
+            "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/KPU66INRFY5BQ3ESVPRUXJR4DXQAFJVT/",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/3B5WDPGUFNPG4NAZ6G4BZX43BKLAVA5B",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/KPU66INRFY5BQ3ESVPRUXJR4DXQAFJVT",
+            "https://nvd.nist.gov/vuln/detail/CVE-2018-19296",
+            "https://ubuntu.com/security/notices/USN-5956-1",
+            "https://www.cve.org/CVERecord?id=CVE-2018-19296",
+            "https://www.debian.org/security/2018/dsa-4351"
+          ],
+          "PublishedDate": "2018-11-16T09:29:00.23Z",
+          "LastModifiedDate": "2023-11-07T02:55:31.36Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2020-13625",
+          "PkgID": "phpmailer/phpmailer@v5.2.23",
+          "PkgName": "phpmailer/phpmailer",
+          "PkgIdentifier": {
+            "PURL": "pkg:composer/phpmailer/phpmailer@v5.2.23",
+            "UID": "356827fbb6d6509b"
+          },
+          "InstalledVersion": "v5.2.23",
+          "FixedVersion": "6.1.6",
+          "Status": "fixed",
+          "Layer": {},
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2020-13625",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Composer",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Acomposer"
+          },
+          "Title": "PHPMailer before 6.1.6 contains an output escaping bug when the name o ...",
+          "Description": "PHPMailer before 6.1.6 contains an output escaping bug when the name of a file attachment contains a double quote character. This can result in the file type being misinterpreted by the receiver or any mail relay processing the message.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-116"
+          ],
+          "VendorSeverity": {
+            "bitnami": 3,
+            "ghsa": 3,
+            "nvd": 3,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "bitnami": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+              "V3Score": 7.5
+            },
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+              "V3Score": 7.5
+            },
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:N/I:P/A:N",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+              "V2Score": 5,
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "http://lists.opensuse.org/opensuse-security-announce/2020-07/msg00067.html",
+            "http://lists.opensuse.org/opensuse-security-announce/2020-07/msg00085.html",
+            "https://github.com/PHPMailer/PHPMailer",
+            "https://github.com/PHPMailer/PHPMailer/commit/c2796cb1cb99d7717290b48c4e6f32cb6c60b7b3",
+            "https://github.com/PHPMailer/PHPMailer/releases/tag/v6.1.6",
+            "https://github.com/PHPMailer/PHPMailer/security/advisories/GHSA-f7hx-fqxw-rvvj",
+            "https://lists.debian.org/debian-lts-announce/2020/06/msg00014.html",
+            "https://lists.debian.org/debian-lts-announce/2020/08/msg00004.html",
+            "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/EFM3BZABL6RUHTVMXSC7OFMP4CKWMRPJ/",
+            "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/SMH4TC5XTS3KZVGMSKEPPBZ2XTZCKKCX/",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/EFM3BZABL6RUHTVMXSC7OFMP4CKWMRPJ",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/SMH4TC5XTS3KZVGMSKEPPBZ2XTZCKKCX",
+            "https://nvd.nist.gov/vuln/detail/CVE-2020-13625",
+            "https://ubuntu.com/security/notices/USN-4505-1",
+            "https://ubuntu.com/security/notices/USN-5956-1",
+            "https://usn.ubuntu.com/4505-1",
+            "https://usn.ubuntu.com/4505-1/",
+            "https://www.cve.org/CVERecord?id=CVE-2020-13625"
+          ],
+          "PublishedDate": "2020-06-08T17:15:10.097Z",
+          "LastModifiedDate": "2023-11-07T03:16:46.607Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2021-34551",
+          "PkgID": "phpmailer/phpmailer@v5.2.23",
+          "PkgName": "phpmailer/phpmailer",
+          "PkgIdentifier": {
+            "PURL": "pkg:composer/phpmailer/phpmailer@v5.2.23",
+            "UID": "356827fbb6d6509b"
+          },
+          "InstalledVersion": "v5.2.23",
+          "FixedVersion": "6.5.0",
+          "Status": "fixed",
+          "Layer": {},
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2021-34551",
+          "DataSource": {
+            "ID": "php-security-advisories",
+            "Name": "PHP Security Advisories Database",
+            "URL": "https://github.com/FriendsOfPHP/security-advisories"
+          },
+          "Title": "RCE affecting Windows hosts via UNC paths to translation files",
+          "Description": "PHPMailer before 6.5.0 on Windows allows remote code execution if lang_path is untrusted data and has a UNC pathname.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-434"
+          ],
+          "VendorSeverity": {
+            "bitnami": 3,
+            "ghsa": 3,
+            "nvd": 3
+          },
+          "CVSS": {
+            "bitnami": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V3Score": 8.1
+            },
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V3Score": 8.1
+            },
+            "nvd": {
+              "V2Vector": "AV:N/AC:H/Au:N/C:P/I:P/A:P",
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V2Score": 5.1,
+              "V3Score": 8.1
+            }
+          },
+          "References": [
+            "https://github.com/FriendsOfPHP/security-advisories/blob/master/phpmailer/phpmailer/CVE-2021-34551.yaml",
+            "https://github.com/PHPMailer/PHPMailer/blob/master/SECURITY.md",
+            "https://github.com/PHPMailer/PHPMailer/commit/acd264bf17ff4ac5c915f0d4226dce8a9ea70bc3",
+            "https://github.com/PHPMailer/PHPMailer/releases/tag/v6.5.0",
+            "https://github.com/PHPMailer/PHPMailer/security/advisories/GHSA-7q44-r25x-wm4q",
+            "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/3YRMWGA4VTMXFB22KICMB7YMFZNFV3EJ/",
+            "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/FJYSOFCUBS67J3TKR74SD3C454N7VTYM/",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/3YRMWGA4VTMXFB22KICMB7YMFZNFV3EJ",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/FJYSOFCUBS67J3TKR74SD3C454N7VTYM",
+            "https://nvd.nist.gov/vuln/detail/CVE-2021-34551"
+          ],
+          "PublishedDate": "2021-06-16T18:15:09.7Z",
+          "LastModifiedDate": "2023-11-07T03:36:01.07Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2021-3603",
+          "PkgID": "phpmailer/phpmailer@v5.2.23",
+          "PkgName": "phpmailer/phpmailer",
+          "PkgIdentifier": {
+            "PURL": "pkg:composer/phpmailer/phpmailer@v5.2.23",
+            "UID": "356827fbb6d6509b"
+          },
+          "InstalledVersion": "v5.2.23",
+          "FixedVersion": "6.5.0",
+          "Status": "fixed",
+          "Layer": {},
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2021-3603",
+          "DataSource": {
+            "ID": "php-security-advisories",
+            "Name": "PHP Security Advisories Database",
+            "URL": "https://github.com/FriendsOfPHP/security-advisories"
+          },
+          "Title": "PHPMailer 6.4.1 and earlier contain a vulnerability that can result in ...",
+          "Description": "PHPMailer 6.4.1 and earlier contain a vulnerability that can result in untrusted code being called (if such code is injected into the host project's scope by other means). If the $patternselect parameter to validateAddress() is set to 'php' (the default, defined by PHPMailer::$validator), and the global namespace contains a function called php, it will be called in preference to the built-in validator of the same name. Mitigated in PHPMailer 6.5.0 by denying the use of simple strings as validator function names.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-829"
+          ],
+          "VendorSeverity": {
+            "bitnami": 3,
+            "ghsa": 3,
+            "nvd": 3,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "bitnami": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V3Score": 8.1
+            },
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V3Score": 8.1
+            },
+            "nvd": {
+              "V2Vector": "AV:N/AC:M/Au:N/C:P/I:P/A:P",
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V2Score": 6.8,
+              "V3Score": 8.1
+            }
+          },
+          "References": [
+            "https://github.com/FriendsOfPHP/security-advisories/blob/master/phpmailer/phpmailer/CVE-2021-3603.yaml",
+            "https://github.com/PHPMailer/PHPMailer",
+            "https://github.com/PHPMailer/PHPMailer/commit/45f3c18dc6a2de1cb1bf49b9b249a9ee36a5f7f3",
+            "https://github.com/PHPMailer/PHPMailer/commit/45f3c18dc6a2de1cb1bf49b9b249a9ee36a5f7f3 (v6.5.0)",
+            "https://github.com/PHPMailer/PHPMailer/releases/tag/v6.5.0",
+            "https://github.com/PHPMailer/PHPMailer/security/advisories/GHSA-77mr-wc79-m8j3",
+            "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/3YRMWGA4VTMXFB22KICMB7YMFZNFV3EJ",
+            "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/3YRMWGA4VTMXFB22KICMB7YMFZNFV3EJ/",
+            "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/FJYSOFCUBS67J3TKR74SD3C454N7VTYM",
+            "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/FJYSOFCUBS67J3TKR74SD3C454N7VTYM/",
+            "https://nvd.nist.gov/vuln/detail/CVE-2021-3603",
+            "https://ubuntu.com/security/notices/USN-5956-1",
+            "https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2021-3603",
+            "https://www.cve.org/CVERecord?id=CVE-2021-3603",
+            "https://www.huntr.dev/bounties/1-PHPMailer/PHPMailer",
+            "https://www.huntr.dev/bounties/1-PHPMailer/PHPMailer/"
+          ],
+          "PublishedDate": "2021-06-17T12:15:08.15Z",
+          "LastModifiedDate": "2023-11-07T03:38:09.233Z"
+        }
+      ]
+    }
+  ]
+}

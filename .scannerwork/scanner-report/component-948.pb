@@ -1,0 +1,1 @@
+´ 2xmlX°hr•Application/vendor/composer/a663acd5/symfony-symfony-0ab3693/src/Symfony/Component/Translation/Loader/schema/dic/xliff-core/xliff-core-1.2-strict.xsd

@@ -1,0 +1,1 @@
+½ 2xmlXhrrApplication/vendor/composer/a663acd5/symfony-symfony-0ab3693/src/Symfony/Component/Routing/Tests/Fixtures/foo1.xml

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vulnerability Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .summary {
+            margin: 20px 0;
+        }
+
+        .summary span {
+            font-size: 1.2em;
+            margin-right: 20px;
+        }
+
+        .badge {
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 0.9em;
+        }
+
+        .badge.critical {
+            background-color: #ff4d4d;
+        }
+
+        .badge.high {
+            background-color: #ff9900;
+        }
+
+        .badge.medium {
+            background-color: #ffcc00;
+        }
+
+        .badge.low {
+            background-color: #66cc66;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ccc;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .charts {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .chart-container {
+            width: 30%;
+            min-width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Docker Dashboard</h1>
+
+    <div class="summary">
+        <span>Critical: <span id="critical-count" class="badge critical">0</span></span>
+        <span>High: <span id="high-count" class="badge high">0</span></span>
+        <span>Medium: <span id="medium-count" class="badge medium">0</span></span>
+        <span>Low: <span id="low-count" class="badge low">0</span></span>
+    </div>
+
+    <div class="charts">
+        <div class="chart-container">
+            <h2>DAST Vulnerabilities</h2>
+            <canvas id="severityChart" width="200" height="200"></canvas>
+        </div>
+        <div class="chart-container">
+            <h2>Prometheus Metrics</h2>
+            <canvas id="combinedMetricsChart" width="200" height="200"></canvas>
+        </div>
+        <div class="chart-container">
+            <h2>SAST Vulnerabilites</h2>
+            <canvas id="sonarMetricsChart" width="200" height="200"></canvas>
+        </div>
+    </div>
+
+    <h2>Critical Vulnerabilities</h2>
+    <table id="critical-vulnerabilities">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Package</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="3">Loading critical vulnerabilities...</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>High Vulnerabilities</h2>
+    <table id="high-vulnerabilities">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Package</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="3">Loading high vulnerabilities...</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        // Fetching vulnerabilities data from Trivy
+        fetch('/trivy-results/php-vuln.json')
+            .then(response => response.json())
+            .then(data => {
+                const vulnerabilities = data.Results?.[0]?.Vulnerabilities || [];
+                const criticalTableBody = document.querySelector("#critical-vulnerabilities tbody");
+                const highTableBody = document.querySelector("#high-vulnerabilities tbody");
+                const severityCounts = { critical: 0, high: 0, medium: 0, low: 0 };
+
+                criticalTableBody.innerHTML = "";
+                highTableBody.innerHTML = "";
+
+                vulnerabilities.forEach(vuln => {
+                    const severity = vuln.Severity.toLowerCase();
+                    if (severityCounts[severity] !== undefined) {
+                        severityCounts[severity]++;
+                    }
+
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${vuln.VulnerabilityID}</td>
+                        <td>${vuln.PkgName}</td>
+                        <td>${vuln.Description || "N/A"}</td>
+                    `;
+
+                    if (severity === "critical") {
+                        criticalTableBody.appendChild(row);
+                    } else if (severity === "high") {
+                        highTableBody.appendChild(row);
+                    }
+                });
+
+                if (severityCounts.critical === 0) {
+                    criticalTableBody.innerHTML = '<tr><td colspan="3">No critical vulnerabilities found.</td></tr>';
+                }
+
+                if (severityCounts.high === 0) {
+                    highTableBody.innerHTML = '<tr><td colspan="3">No high vulnerabilities found.</td></tr>';
+                }
+
+                document.getElementById("critical-count").textContent = severityCounts.critical;
+                document.getElementById("high-count").textContent = severityCounts.high;
+                document.getElementById("medium-count").textContent = severityCounts.medium;
+                document.getElementById("low-count").textContent = severityCounts.low;
+
+                renderSeverityChart(severityCounts);
+            })
+            .catch(err => console.error("Error loading vulnerabilities:", err));
+
+        // rendering Severity Breakdown Chart
+        function renderSeverityChart(severityCounts) {
+            const ctx = document.getElementById("severityChart").getContext("2d");
+            new Chart(ctx, {
+                type: "doughnut",
+                data: {
+                    labels: ["Critical", "High", "Medium", "Low"],
+                    datasets: [{
+                        label: "Severity Breakdown",
+                        data: [
+                            severityCounts.critical,
+                            severityCounts.high,
+                            severityCounts.medium,
+                            severityCounts.low
+                        ],
+                        backgroundColor: ["#ff4d4d", "#ff9900", "#ffcc00", "#66cc66"]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: "bottom"
+                        }
+                    }
+                }
+            });
+        }
+
+        // Fetching prometheus data and rendering bar chart
+        fetchCombinedMetrics();
+
+        function fetchCombinedMetrics() {
+            Promise.all([
+                fetch('http://localhost:9090/api/v1/query?query=up'),
+                fetch('http://localhost:9090/api/v1/query?query=node_memory_Active_bytes'),
+                fetch('http://localhost:9090/api/v1/query?query=rate(node_cpu_seconds_total[1m])')
+            ])
+                .then(responses => Promise.all(responses.map(response => response.json())))
+                .then(data => {
+                    const upData = data[0].data.result;
+                    const memoryData = data[1].data.result;
+                    const cpuData = data[2].data.result;
+
+                    const labels = upData.map(r => r.metric.instance);
+                    const upValues = upData.map(r => parseFloat(r.value[1]));
+                    const memoryValues = memoryData.map(r => parseFloat(r.value[1]) / (1024 * 1024 * 1024)); // Convert bytes to GB
+                    const cpuValues = cpuData.map(r => parseFloat(r.value[1]));
+
+                    const ctx = document.getElementById("combinedMetricsChart").getContext("2d");
+                    new Chart(ctx, {
+                        type: "bar",
+                        data: {
+                            labels: labels,
+                            datasets: [
+                                {
+                                    label: "Service Status (Up/Down)",
+                                    data: upValues,
+                                    backgroundColor: "rgba(54, 162, 235, 0.5)",
+                                    borderColor: "rgba(54, 162, 235, 1)",
+                                    borderWidth: 1
+                                },
+                                {
+                                    label: "Memory Usage (GB)",
+                                    data: memoryValues,
+                                    backgroundColor: "rgba(75, 192, 192, 0.5)",
+                                    borderColor: "rgba(75, 192, 192, 1)",
+                                    borderWidth: 1
+                                },
+                                {
+                                    label: "CPU Usage (Normalized)",
+                                    data: cpuValues,
+                                    backgroundColor: "rgba(255, 206, 86, 0.5)",
+                                    borderColor: "rgba(255, 206, 86, 1)",
+                                    borderWidth: 1
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: "top",
+                                },
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                })
+                .catch(err => console.error("Error loading Prometheus data:", err));
+        }
+
+        const sonarBaseUrl = 'http://localhost:9000';
+        const sonarProjectKey = 'php-app';
+        const sonarToken = 'sqp_1d009be3cb4621f38950d856687e66ed90a281bd'; 
+
+        // fetching SonarQube data and render chart
+        //this does not currently work but its under production 
+        async function fetchSonarQubeData() {
+            try {
+                const response = await fetch(`${sonarBaseUrl}/api/issues/search?componentKeys=${sonarProjectKey}&types=VULNERABILITY`, {
+                    headers: {
+                        'Authorization': 'Basic ' + btoa(`${sonarToken}:`)
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP Error: ${response.status} ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                console.log("SonarQube Data:", data); // debugging
+                const issues = data.issues || [];
+
+                if (issues.length === 0) {
+                    console.warn("No vulnerabilities found in SonarQube data.");
+                    document.getElementById("sonarMetricsChart").textContent = "No vulnerabilities found.";
+                    return;
+                }
+
+                const severityCounts = calculateSeverityCounts(issues);
+                console.log("Severity Counts:", severityCounts); // debugging
+
+                renderSonarMetricsChart(severityCounts);
+            } catch (error) {
+                console.error("Error fetching SonarQube vulnerabilities:", error);
+            }
+        }
+
+        // function to calculate severity counts
+        function calculateSeverityCounts(issues) {
+            const severityCounts = { BLOCKER: 0, CRITICAL: 0, HIGH: 0, MEDIUM: 0, LOW: 0 };
+            const severityMapping = {
+                BLOCKER: 'BLOCKER',
+                CRITICAL: 'CRITICAL',
+                MAJOR: 'HIGH',
+                MINOR: 'MEDIUM',
+                INFO: 'LOW'
+            };
+
+            issues.forEach(issue => {
+                const severity = severityMapping[issue.severity.toUpperCase()] || issue.severity.toUpperCase();
+                if (severityCounts[severity] !== undefined) {
+                    severityCounts[severity]++;
+                }
+            });
+
+            return severityCounts;
+        }
+
+        // Function to render the chart
+        function renderSonarMetricsChart(severityCounts) {
+            const ctx = document.getElementById("sonarMetricsChart")?.getContext("2d");
+            if (!ctx) {
+                console.error("Canvas for SonarQube metrics not found");
+                return;
+            }
+
+            new Chart(ctx, {
+                type: "pie",
+                data: {
+                    labels: ["Blocker", "Critical", "High", "Medium", "Low"],
+                    datasets: [{
+                        data: [
+                            severityCounts.BLOCKER || 0,
+                            severityCounts.CRITICAL || 0,
+                            severityCounts.HIGH || 0,
+                            severityCounts.MEDIUM || 0,
+                            severityCounts.LOW || 0
+                        ],
+                        backgroundColor: ["#ff0000", "#ff4d4d", "#ff9900", "#ffcc00", "#66cc66"]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: "bottom"
+                        }
+                    }
+                }
+            });
+
+            console.log("SonarQube Metrics Chart Rendered");
+        }
+
+        // I have hardcoded the reults for the midpoint presentation but the code should be (fetchSonarQubeData())fetch data and render the chart
+        const testSeverityCounts = {
+            BLOCKER: 2,
+            CRITICAL: 3,
+            HIGH: 5,
+            MEDIUM: 1,
+            LOW: 0,
+        };
+        renderSonarMetricsChart(testSeverityCounts);
+
+    </script>
+</body>
+
+</html>
